@@ -27,7 +27,7 @@ class _LoginCardState extends State<LoginCard>{
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(35),
       ),
       width: widthCard,
       height: heightCard,

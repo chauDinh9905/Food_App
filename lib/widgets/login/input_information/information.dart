@@ -6,7 +6,7 @@ Widget _infomationBox (String label, String hint){
       border: OutlineInputBorder(
         borderSide: BorderSide(
           color: Colors.grey,
-          width: 1,
+          width: 6,
         ),
         borderRadius: BorderRadius.all(Radius.circular(4),
       ),

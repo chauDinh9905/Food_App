@@ -1,15 +1,18 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 Widget _informationButtonColumn(Color colorButton, String label, VoidCallback onPressed){
-  return FilledButton(
+  return Container(
+    width: double.infinity,
+    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+    child: FilledButton(
       onPressed: onPressed,
       style: FilledButton.styleFrom(
         backgroundColor: colorButton,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4),),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
       ),
       child: Text(label),
+    ),
   );
 }
 
