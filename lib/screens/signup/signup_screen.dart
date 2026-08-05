@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../constants/images/app_assets.dart';
 import '../../widgets/signup/card/signup_card.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class SignupScreen extends StatefulWidget{
   const SignupScreen({super.key});
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/screens/signup/signup_screen.dart';
-
+import 'package:projects_for_mobile/screens/login/login_screen.dart';
+import 'package:projects_for_mobile/routes/app_route.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -67,9 +68,13 @@ class MyApp extends StatelessWidget {
         children: [kitchen, time, restaurant],
       ),
     );
-    return MaterialApp(
-      title: appTitle,
-      home: SignupScreen(),
+    final _appRouter = AppRouter();
+    // return MaterialApp(
+    //   title: appTitle,
+    //   home: SignupScreen(),//LoginScreen(),
+    // );
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
     );
   }
 }

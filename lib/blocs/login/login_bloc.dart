@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
 import 'login_event.dart';
-improt 'login_status.dart';
+import 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState>{
   LoginBloc():super(LoginInitial()){

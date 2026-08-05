@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/widgets/login/buttons/informationButton.dart';
 import 'package:projects_for_mobile/widgets/login/header/login_header.dart';
 import 'package:projects_for_mobile/widgets/login/input_information/information.dart';
-
+import 'package:auto_route/auto_route.dart';
+import 'package:projects_for_mobile/routes/app_route.dart';
 
 class LoginCard extends StatefulWidget{
   const LoginCard({super.key});
@@ -18,6 +19,9 @@ class _LoginCardState extends State<LoginCard>{
     print("Nút quên mật khẩu ở màn hình đăng nhập được bấm");
   }
   void createAccount(){
+    context.router.push(
+      SignupRoute(),
+    );
     print("Nút tạo tài khoản mới ở màn hình đăng nhập được bấm");
   }
   @override
