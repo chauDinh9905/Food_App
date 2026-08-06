@@ -1,11 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'signup_event.dart';
 import 'signup_state.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable()
 class SignupBloc extends Bloc<SignupEvent, SignupState>{
   SignupBloc():super(SignupInitial()){
     on<SignupSubmitted>(_onSignupSubmitted);
   }
   Future<void> _onSignupSubmitted(SignupSubmitted event, Emitter<SignupState> emit,) async{
+    print("fullname: ${event.fullname}");
+    print("staffcode: ${event.staffcode}");
+    print("accountname: ${event.accountname}");
+    print("password: ${event.password}");
     if(event.fullname.isEmpty || event.staffcode.isEmpty || event.accountname.isEmpty
        || event.password.length < 6 || (event.staffcode == event.accountname)){
       emit(SignupValidationFailure(

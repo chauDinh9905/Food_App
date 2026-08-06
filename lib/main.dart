@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:projects_for_mobile/screens/signup/signup_screen.dart';
-import 'package:projects_for_mobile/screens/login/login_screen.dart';
 import 'package:projects_for_mobile/routes/app_route.dart';
-void main() {
+import 'package:projects_for_mobile/di/injection.dart';
+// void main() {
+//   runApp(const MyApp());
+// }
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,68 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const String appTitle = 'Flutter layout demo';
-    final stars = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-      ],
-    );
-    final ratings = Container(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        children: [
-          stars,
-          const Text('170 reviews')
-        ],
-      ),
-    );
-    const descTextStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w800,
-      fontFamily: 'Roboto',
-      letterSpacing: 0.5,
-      fontSize: 18,
-      height: 2,
-    );
-    final kitchen = Column(
-      children: [
-        Icon(Icons.kitchen, color: Colors.green[500],),
-        const Text('PREP:'),
-        const Text('25 min'),
-      ],
-    );
-    final time = Column(
-      children: [
-        Icon(Icons.timer, color: Colors.green[500]),
-        const Text('COOK'),
-        const Text('1 hr'),
-      ],
-    );
-    final restaurant = Column(
-      children: [
-        Icon(Icons.restaurant, color: Colors.green[500]),
-        const Text('FEEDS:'),
-        const Text('4-6'),
-      ],
-    );
-    final iconList = DefaultTextStyle.merge(
-      style: descTextStyle,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [kitchen, time, restaurant],
-      ),
-    );
-    final _appRouter = AppRouter();
-    // return MaterialApp(
-    //   title: appTitle,
-    //   home: SignupScreen(),//LoginScreen(),
-    // );
+
+    final appRouter = AppRouter();
     return MaterialApp.router(
-      routerConfig: _appRouter.config(),
+      routerConfig: appRouter.config(),
     );
   }
 }
@@ -89,14 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -135,15 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: .center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

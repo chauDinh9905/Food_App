@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 
 import '../models/account_model.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable()
 class RegisterDataSource{
   final Dio dio;
   RegisterDataSource(this.dio);

@@ -3,6 +3,9 @@ import 'package:projects_for_mobile/domain/repositories/register_repository.dart
 import '../../domain/entities/account.dart';
 import '../data_mapper/account_mapper.dart';
 import '../data_sources/register_data_source.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable(as: RegisterRepository)
 class RegisterRepositoryImpl implements RegisterRepository{
   final RegisterDataSource dataSource;
   final AccountMapper mapper;

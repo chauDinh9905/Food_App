@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projects_for_mobile/blocs/signup/signup_event.dart';
 import 'package:projects_for_mobile/widgets/signup/buttons/informationButton.dart';
 import 'package:projects_for_mobile/widgets/signup/header/signup_header.dart';
 import 'package:projects_for_mobile/widgets/signup/input_information/information.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../blocs/signup/signup_bloc.dart';
 
 class SignupCard extends StatefulWidget{
    const SignupCard({super.key});
@@ -10,7 +13,14 @@ class SignupCard extends StatefulWidget{
 }
 
 class _SignupCardState extends State<SignupCard>{
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController staffcodeController = TextEditingController();
+  TextEditingController accountnameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   void signup(){
+    context.read<SignupBloc>().add(
+      SignupSubmitted(fullname: fullnameController.text, staffcode: staffcodeController.text, accountname: accountnameController.text, password: passwordController.text)
+    );
     print('Nút đăng ký ở màn hình đăng ký được bấm');
   }
   @override
@@ -20,15 +30,25 @@ class _SignupCardState extends State<SignupCard>{
     return Container(
       width: widthCard,
       height: heightCard,
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(35),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           signupHeader(),
-          informationSignup(),
+          informationSignup(fullnameController, staffcodeController, accountnameController, passwordController),
           informationButton(signup),
         ],
       ),
     );
+  }
+  @override
+  void dispose(){
+    fullnameController.dispose();
+    staffcodeController.dispose();
+    accountnameController.dispose();
+    passwordController.dispose();
   }
 }

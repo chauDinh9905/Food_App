@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget _infomationBox (String label, String hint){
+Widget _infomationBox (String hint, TextEditingController controller, bool hide){
   return TextFormField(
+    controller: controller,
+    obscureText: hide,
     decoration:  InputDecoration(
       border: OutlineInputBorder(
         borderSide: BorderSide(
@@ -12,17 +14,16 @@ Widget _infomationBox (String label, String hint){
       ),
      ),
       hintText: hint,
-      labelText: label,
     ),
   );
 }
 
-Widget informationLogin(){
+Widget informationLogin(TextEditingController usernameController, TextEditingController passwordController){
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      _infomationBox('', 'Tên đăng nhập'),
-      _infomationBox('','Mật khẩu'),
+      _infomationBox( 'Tên đăng nhập', usernameController, false,),
+      _infomationBox('Mật khẩu', passwordController, true),
     ],
   );
 }

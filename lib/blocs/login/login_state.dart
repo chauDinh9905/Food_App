@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 sealed class LoginState{}
 final class LoginInitial extends LoginState{}

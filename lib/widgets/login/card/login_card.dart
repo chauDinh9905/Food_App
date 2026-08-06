@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projects_for_mobile/blocs/login/login_event.dart';
 import 'package:projects_for_mobile/widgets/login/buttons/informationButton.dart';
 import 'package:projects_for_mobile/widgets/login/header/login_header.dart';
 import 'package:projects_for_mobile/widgets/login/input_information/information.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:projects_for_mobile/routes/app_route.dart';
+import '../../../blocs/login/login_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCard extends StatefulWidget{
   const LoginCard({super.key});
@@ -12,7 +15,12 @@ class LoginCard extends StatefulWidget{
 }
 
 class _LoginCardState extends State<LoginCard>{
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   void login(){
+    context.read<LoginBloc>().add(
+      LoginSubmitted(username: usernameController.text, password: passwordController.text,)
+    );
     print("Nút Login ở màn hình đăng nhập được bấm");
   }
   void forgotPass(){
@@ -33,15 +41,23 @@ class _LoginCardState extends State<LoginCard>{
         color: Colors.white,
         borderRadius: BorderRadius.circular(35),
       ),
+      //color: Colors.white,
       width: widthCard,
       height: heightCard,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           loginHeader(),
-          informationLogin(),
+          informationLogin(usernameController, passwordController),
           informationButton(onLogin: login, onForgotPass: forgotPass,onCreateAccount:  createAccount),
         ],
       ),
     );
+  }
+  @override
+  void dispose(){
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

@@ -1,6 +1,8 @@
 import '../entities/account.dart';
 import '../repositories/register_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class SignupUseCase{
   final RegisterRepository repository;
   SignupUseCase(this.repository);

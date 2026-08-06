@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 
 import '../models/user_model.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class AuthDataSource {
    final Dio dio;
    AuthDataSource(this.dio);

@@ -1,6 +1,8 @@
 import '../entities/user.dart';
 import '../repositories/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class LoginUseCase{
   final AuthRepository repository;
   LoginUseCase(this.repository);

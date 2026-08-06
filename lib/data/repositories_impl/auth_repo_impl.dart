@@ -3,7 +3,9 @@ import 'package:projects_for_mobile/domain/repositories/auth_repository.dart';
 import '../../domain/entities/user.dart';
 import '../data_mapper/user_mapper.dart';
 import '../data_sources/auth_data_source.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository{
   final AuthDataSource dataSource;
   final UserMapper mapper;

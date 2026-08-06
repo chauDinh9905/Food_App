@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 sealed class SignupState{}
 final class SignupInitial extends SignupState{}
 final class SignupLoading extends SignupState{}
