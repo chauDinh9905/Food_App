@@ -19,7 +19,7 @@ Widget _stateInRow(Color color, String label){
 }
 Widget informationButton({required VoidCallback function}){
   return Container(
-    child: Column(
+    child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
          _buttonInRow(Colors.red, "Hủy món", function),
