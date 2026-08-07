@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/constants/images/app_assets.dart';
 
 Widget _userName(String name){
-  String label = "Xin chào, " + name;
+  String label = "Xin chào, $name";
   return Text(label);
 }
 
