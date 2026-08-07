@@ -17,11 +17,13 @@ Widget _stateInRow(Color color, String label){
     child: Text(label, style: TextStyle(color: Colors.white),),
   );
 }
-Widget informationButton(FilledButton button){
+Widget informationButton({required VoidCallback function}){
   return Container(
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-
+         _buttonInRow(Colors.red, "Hủy món", function),
+         _stateInRow(Colors.grey, "Đã đặt"),
       ],
     ),
   );
