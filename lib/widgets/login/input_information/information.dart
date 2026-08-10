@@ -10,7 +10,7 @@ Widget _infomationBox (String hint, TextEditingController controller, bool hide)
           color: Colors.grey,
           width: 6,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(4),
+        borderRadius: BorderRadius.all(Radius.circular(8),
       ),
      ),
       hintText: hint,
