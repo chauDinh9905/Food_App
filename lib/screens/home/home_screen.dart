@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/widgets/home/card/food_card.dart';
 import 'package:projects_for_mobile/widgets/home/header/home_header.dart';
-
+import 'package:auto_route/auto_route.dart';
 import '../../widgets/common/app_header.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/home/home_bloc.dart';
+import '../../blocs/home/home_event.dart';
+import '../../di/injection.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
   @override
@@ -22,9 +27,12 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context){
     String name = "Đinh Thị Diệu Châu";
     DateTime now = DateTime.now();
-    return Scaffold(
-      body: Container(
-         child: Column(
+    return BlocProvider<HomeBloc>(
+      create: (context) => getIt<HomeBloc>()..add(HomeStarted()),
+      child: Scaffold(
+        body: SafeArea(
+          top: true,
+          child: Column(
             children: [
               appHeader(function: _openChoiceList),
               homeHeader(name),
@@ -59,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen>{
                 ),
               ),
             ],
-         ),
+          ),
+        ),
       ),
     );
   }

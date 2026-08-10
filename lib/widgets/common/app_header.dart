@@ -12,7 +12,7 @@ Widget informationApp(){
     child: Row(
       children: [
         Image.asset(AppAssets.logoApp),
-        Text("Đặt cơm", style: TextStyle(fontWeight: FontWeight.bold),),
+        Text("Đặt cơm", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),),
       ],
     ),
   );

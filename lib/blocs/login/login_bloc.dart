@@ -20,6 +20,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
       return;
     }
     emit(LoginLoading());
-
+    emit(LoginSuccess());
   }
 }

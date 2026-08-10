@@ -3,6 +3,9 @@ import 'package:projects_for_mobile/widgets/common/app_header.dart';
 import 'package:projects_for_mobile/widgets/lich_su_dat_mon/header/lich_su_dat_mon_header.dart';
 import 'package:projects_for_mobile/widgets/lich_su_dat_mon/table/history_table.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
   @override

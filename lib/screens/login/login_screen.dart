@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projects_for_mobile/blocs/login/login_state.dart';
 import 'package:projects_for_mobile/constants/images/app_assets.dart';
+import 'package:projects_for_mobile/routes/app_route.dart';
 import 'package:projects_for_mobile/widgets/login/card/login_card.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../blocs/login/login_bloc.dart';
@@ -19,20 +21,27 @@ class _LoginScreenState extends State<LoginScreen>{
       create: (context) {
             return getIt<LoginBloc>();
       },
-      child: Scaffold(
-          body: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  AppAssets.loginBackground,
-                  fit: BoxFit.cover,
+      child: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state){
+          if(state is LoginSuccess){
+            context.router.replace(HomeRoute());
+          }
+        },
+        child: Scaffold(
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    AppAssets.loginBackground,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Center(
-                child: LoginCard(),
-              ),
-            ],
-          )
+                Center(
+                  child: LoginCard(),
+                ),
+              ],
+            )
+        ),
       ),
     );
   }

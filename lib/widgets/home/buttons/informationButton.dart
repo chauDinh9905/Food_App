@@ -12,8 +12,7 @@ Widget _buttonInRow(Color color, String label, VoidCallback function){
 Widget _stateInRow(Color color, String label){
   return Container(
     alignment: Alignment.center,
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), ),
-    color: color,
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: color,),
     child: Text(label, style: TextStyle(color: Colors.white),),
   );
 }
