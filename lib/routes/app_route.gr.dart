@@ -73,3 +73,19 @@ class SignupRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [ThongKeSuatAnScreen]
+class ThongKeSuatAnRoute extends PageRouteInfo<void> {
+  const ThongKeSuatAnRoute({List<PageRouteInfo>? children})
+    : super(ThongKeSuatAnRoute.name, initialChildren: children);
+
+  static const String name = 'ThongKeSuatAnRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ThongKeSuatAnScreen();
+    },
+  );
+}

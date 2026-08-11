@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 
 import 'home_event.dart';
 import 'home_state.dart';
-import 'package:injectable/injectable.dart';
 
 @Injectable()
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

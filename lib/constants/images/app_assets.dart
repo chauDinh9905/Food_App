@@ -8,6 +8,6 @@ class AppAssets{
   static const String logoApp = 'assets/images/logoApp.png';
   static const String listChoice = 'assets/images/listChoice.png';
   static const String lichSuDatMon = 'assets/images/lich_su_dat_mon.png';
-  static const String thongKeSuatAn = 'assets/images/thong_ke_suat_an';
-  static const String dangXuat = 'assets/images/dang_xuat';
+  static const String thongKeSuatAn = 'assets/images/thong_ke_suat_an.png';
+  static const String dangXuat = 'assets/images/dang_xuat.png';
 }

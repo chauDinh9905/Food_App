@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/home/home_bloc.dart';
 import '../../blocs/home/home_event.dart';
 import '../../di/injection.dart';
+import '../list_choice/list_choice_screen.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget{
@@ -19,6 +20,25 @@ class _HomeScreenState extends State<HomeScreen>{
   void _openChoiceList() {
     // Xử lý khi nhấn nút choice
     print('Open choice list');
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'ListChoice',
+      pageBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          ) {
+        return Align(
+          alignment: Alignment.centerRight,
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: double.infinity,
+            child: const ListChoiceScreen(),
+          ),
+        );
+      },
+    );
   }
   void _datCom(){
     print('Nút đặt cơm được bấm');

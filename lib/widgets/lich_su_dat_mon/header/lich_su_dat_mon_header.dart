@@ -3,11 +3,13 @@ import 'package:projects_for_mobile/constants/color/app_bar_color.dart';
 import 'package:projects_for_mobile/constants/images/app_assets.dart';
 
 Widget _informationScreen(){
-  return Container(
+  return SizedBox(
+    height: 48,
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Image.asset(AppAssets.lichSuDatMon),
+        SizedBox(width: 6,),
         Text("Lịch sử đặt món", style: TextStyle(fontWeight: FontWeight.bold, color: AppBarColor.appBarColor),)
       ],
     ),

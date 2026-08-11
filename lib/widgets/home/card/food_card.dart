@@ -22,7 +22,7 @@ Widget foodCard(String fileImage, String foodName, String foodPrice, DateTime dt
 
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withValues(alpha: 0.2),
           blurRadius: 8,
           spreadRadius: 1,
           offset: const Offset(2, 3),
