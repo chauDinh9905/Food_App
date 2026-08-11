@@ -13,8 +13,12 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:projects_for_mobile/blocs/home/home_bloc.dart' as _i346;
+import 'package:projects_for_mobile/blocs/lich_su_dat_mon/lich_su_dat_mon_bloc.dart'
+    as _i306;
 import 'package:projects_for_mobile/blocs/login/login_bloc.dart' as _i834;
 import 'package:projects_for_mobile/blocs/signup/signup_bloc.dart' as _i27;
+import 'package:projects_for_mobile/blocs/thong_ke_suat_an/thong_ke_suat_an_bloc.dart'
+    as _i148;
 import 'package:projects_for_mobile/data/data_mapper/account_mapper.dart'
     as _i876;
 import 'package:projects_for_mobile/data/data_mapper/user_mapper.dart' as _i33;
@@ -43,8 +47,10 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.factory<_i346.HomeBloc>(() => _i346.HomeBloc());
+    gh.factory<_i306.LichSuBloc>(() => _i306.LichSuBloc());
     gh.factory<_i834.LoginBloc>(() => _i834.LoginBloc());
     gh.factory<_i27.SignupBloc>(() => _i27.SignupBloc());
+    gh.factory<_i148.ThongKeBloc>(() => _i148.ThongKeBloc());
     gh.factory<_i876.AccountMapper>(() => _i876.AccountMapper());
     gh.factory<_i33.UserMapper>(() => _i33.UserMapper());
     gh.factory<_i703.AuthDataSource>(

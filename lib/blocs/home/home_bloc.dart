@@ -16,6 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       HomeStarted event,
       Emitter<HomeState> emit,
       ) async {
+    print("Màn hình home được mở");
     emit(HomeLoading());
     // Sau này lấy user + danh sách món
     // từ UseCase/Repository.

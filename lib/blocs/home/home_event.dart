@@ -1,8 +1,9 @@
 sealed class HomeEvent{}
 
-class HomeStarted extends HomeEvent {}
+final class HomeStarted extends HomeEvent {
+}
 
-class OrderFoodRequested extends HomeEvent {
+final class OrderFoodRequested extends HomeEvent {
   final int foodId;
 
   OrderFoodRequested({
@@ -10,7 +11,7 @@ class OrderFoodRequested extends HomeEvent {
   });
 }
 
-class CancelFoodRequested extends HomeEvent {
+final class CancelFoodRequested extends HomeEvent {
   final int foodId;
 
   CancelFoodRequested({
