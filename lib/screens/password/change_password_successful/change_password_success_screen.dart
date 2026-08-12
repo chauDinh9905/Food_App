@@ -31,7 +31,32 @@ class _ChangePasswordSuccessScreenState extends State<ChangePasswordSuccessScree
             context.router.replace(LoginRoute());
           }
         },
+        child: Scaffold(
+          body: Stack(
+            children: [
+              Positioned.fill(
+                  child: ImageFiltered(
+                      imageFilter: ImageFilter.blur(
+                        sigmaY: 10,
+                        sigmaX: 10,
+                      ),
+                    child: Image.asset(
+                        AppAssets.loginBackground,
+                        fit: BoxFit.cover,
+                    ),
+                  ),
+              ),
+              Center(
+                child: ChangePasswordSuccessfullyCard(),
+              ),
+            ],
+          ),
+        ),
       ),
     );
+  }
+  @override
+  void dispose(){
+    super.dispose();
   }
 }
