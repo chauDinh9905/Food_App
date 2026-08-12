@@ -8,7 +8,7 @@ Widget _bound(){
   );
 }
 
-Widget _note(String fullname, String accountname){
+Widget _note(String? fullname, String? accountname){
   return Text.rich(
     TextSpan(
       text: "Xin chào",
@@ -43,7 +43,7 @@ Widget _label(){
   );
 }
 
-Widget changePasswordHeader(String fullname, String accountname){
+Widget changePasswordHeader(String? fullname, String? accountname){
   return Container(
     color: Colors.white,
     child: Column(

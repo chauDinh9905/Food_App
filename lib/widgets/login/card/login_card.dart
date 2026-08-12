@@ -24,6 +24,7 @@ class _LoginCardState extends State<LoginCard>{
     print("Nút Login ở màn hình đăng nhập được bấm");
   }
   void forgotPass(){
+    context.router.push(ForgotPasswordRoute());
     print("Nút quên mật khẩu ở màn hình đăng nhập được bấm");
   }
   void createAccount(){

@@ -1,0 +1,4 @@
+sealed class ChangePasswordSuccessfulState {}
+final class ChangePasswordSuccessfulInitial extends ChangePasswordSuccessfulState{}
+final class ChangePasswordSuccessfulLoading extends ChangePasswordSuccessfulState{}
+final class ChangePasswordSuccessfulSuccess extends ChangePasswordSuccessfulState{}
