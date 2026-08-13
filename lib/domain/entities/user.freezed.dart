@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String? get username; String? get password;
+ String? get username; String? get fullname; String? get employeeCode;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.username, username) || other.username == username)&&(identical(other.fullname, fullname) || other.fullname == fullname)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,password);
+int get hashCode => Object.hash(runtimeType,username,fullname,employeeCode);
 
 @override
 String toString() {
-  return 'User(username: $username, password: $password)';
+  return 'User(username: $username, fullname: $fullname, employeeCode: $employeeCode)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String? username, String? password
+ String? username, String? fullname, String? employeeCode
 });
 
 
@@ -62,10 +62,11 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = freezed,Object? password = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = freezed,Object? fullname = freezed,Object? employeeCode = freezed,}) {
   return _then(_self.copyWith(
 username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
-as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,fullname: freezed == fullname ? _self.fullname : fullname // ignore: cast_nullable_to_non_nullable
+as String?,employeeCode: freezed == employeeCode ? _self.employeeCode : employeeCode // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? username,  String? password)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? username,  String? fullname,  String? employeeCode)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.username,_that.password);case _:
+return $default(_that.username,_that.fullname,_that.employeeCode);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.username,_that.password);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? username,  String? password)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? username,  String? fullname,  String? employeeCode)  $default,) {final _that = this;
 switch (_that) {
 case _User():
-return $default(_that.username,_that.password);case _:
+return $default(_that.username,_that.fullname,_that.employeeCode);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.username,_that.password);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? username,  String? password)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? username,  String? fullname,  String? employeeCode)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.username,_that.password);case _:
+return $default(_that.username,_that.fullname,_that.employeeCode);case _:
   return null;
 
 }
@@ -207,11 +208,12 @@ return $default(_that.username,_that.password);case _:
 
 
 class _User implements User {
-  const _User({this.username = User.usernameDefault, this.password = User.passwordDefault});
+  const _User({this.username = User.usernameDefault, this.fullname = User.fullnameDefault, this.employeeCode = User.employeeCodeDefault});
   
 
 @override@JsonKey() final  String? username;
-@override@JsonKey() final  String? password;
+@override@JsonKey() final  String? fullname;
+@override@JsonKey() final  String? employeeCode;
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +225,16 @@ _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.username, username) || other.username == username)&&(identical(other.fullname, fullname) || other.fullname == fullname)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,password);
+int get hashCode => Object.hash(runtimeType,username,fullname,employeeCode);
 
 @override
 String toString() {
-  return 'User(username: $username, password: $password)';
+  return 'User(username: $username, fullname: $fullname, employeeCode: $employeeCode)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String? username, String? password
+ String? username, String? fullname, String? employeeCode
 });
 
 
@@ -260,10 +262,11 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = freezed,Object? password = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = freezed,Object? fullname = freezed,Object? employeeCode = freezed,}) {
   return _then(_User(
 username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
-as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,fullname: freezed == fullname ? _self.fullname : fullname // ignore: cast_nullable_to_non_nullable
+as String?,employeeCode: freezed == employeeCode ? _self.employeeCode : employeeCode // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

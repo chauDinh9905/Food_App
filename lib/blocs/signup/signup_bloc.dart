@@ -25,5 +25,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState>{
       return;
     }
     emit(SignupLoading());
+    emit(SignupSuccess());
   }
 }

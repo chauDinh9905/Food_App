@@ -25,25 +25,23 @@ import 'package:projects_for_mobile/blocs/password/forgot_password/forgot_passwo
 import 'package:projects_for_mobile/blocs/signup/signup_bloc.dart' as _i27;
 import 'package:projects_for_mobile/blocs/thong_ke_suat_an/thong_ke_suat_an_bloc.dart'
     as _i148;
-import 'package:projects_for_mobile/data/data_mapper/account_mapper.dart'
-    as _i876;
-import 'package:projects_for_mobile/data/data_mapper/user_mapper.dart' as _i33;
 import 'package:projects_for_mobile/data/data_sources/auth_data_source.dart'
     as _i703;
 import 'package:projects_for_mobile/data/data_sources/register_data_source.dart'
     as _i1048;
-import 'package:projects_for_mobile/data/repositories_impl/auth_repo_impl.dart'
-    as _i164;
-import 'package:projects_for_mobile/data/repositories_impl/register_repo_impl.dart'
-    as _i305;
-import 'package:projects_for_mobile/domain/repositories/auth_repository.dart'
-    as _i721;
-import 'package:projects_for_mobile/domain/repositories/register_repository.dart'
-    as _i1004;
-import 'package:projects_for_mobile/domain/use_cases/login_use_case.dart'
-    as _i2;
-import 'package:projects_for_mobile/domain/use_cases/signup_use_case.dart'
-    as _i331;
+import 'package:projects_for_mobile/domain/repositories/food_repository.dart'
+    as _i19;
+import 'package:projects_for_mobile/domain/repositories/user_repository.dart'
+    as _i999;
+import 'package:projects_for_mobile/domain/use_cases/get_food_items_on_this_week_use_case.dart'
+    as _i280;
+import 'package:projects_for_mobile/domain/use_cases/login_user.dart' as _i561;
+import 'package:projects_for_mobile/domain/use_cases/register_user.dart'
+    as _i1040;
+import 'package:projects_for_mobile/domain/use_cases/reset_password.dart'
+    as _i274;
+import 'package:projects_for_mobile/domain/use_cases/verify_forgot_password.dart'
+    as _i489;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -62,31 +60,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.ForgotPasswordBloc>(() => _i691.ForgotPasswordBloc());
     gh.factory<_i27.SignupBloc>(() => _i27.SignupBloc());
     gh.factory<_i148.ThongKeBloc>(() => _i148.ThongKeBloc());
-    gh.factory<_i876.AccountMapper>(() => _i876.AccountMapper());
-    gh.factory<_i33.UserMapper>(() => _i33.UserMapper());
     gh.factory<_i703.AuthDataSource>(
       () => _i703.AuthDataSource(gh<_i361.Dio>()),
     );
     gh.factory<_i1048.RegisterDataSource>(
       () => _i1048.RegisterDataSource(gh<_i361.Dio>()),
     );
-    gh.factory<_i721.AuthRepository>(
-      () => _i164.AuthRepositoryImpl(
-        gh<_i703.AuthDataSource>(),
-        gh<_i33.UserMapper>(),
-      ),
+    gh.factory<_i280.GetFoodItemsOnThisWeekUseCase>(
+      () => _i280.GetFoodItemsOnThisWeekUseCase(gh<_i19.FoodRepository>()),
     );
-    gh.factory<_i2.LoginUseCase>(
-      () => _i2.LoginUseCase(gh<_i721.AuthRepository>()),
+    gh.factory<_i561.LoginUserUseCase>(
+      () => _i561.LoginUserUseCase(gh<_i999.UserRepository>()),
     );
-    gh.factory<_i1004.RegisterRepository>(
-      () => _i305.RegisterRepositoryImpl(
-        gh<_i1048.RegisterDataSource>(),
-        gh<_i876.AccountMapper>(),
-      ),
+    gh.factory<_i1040.RegisterUseCase>(
+      () => _i1040.RegisterUseCase(gh<_i999.UserRepository>()),
     );
-    gh.factory<_i331.SignupUseCase>(
-      () => _i331.SignupUseCase(gh<_i1004.RegisterRepository>()),
+    gh.factory<_i274.ResetPasswordUseCase>(
+      () => _i274.ResetPasswordUseCase(gh<_i999.UserRepository>()),
+    );
+    gh.factory<_i489.VerifyForgotPasswordUseCase>(
+      () => _i489.VerifyForgotPasswordUseCase(gh<_i999.UserRepository>()),
     );
     return this;
   }

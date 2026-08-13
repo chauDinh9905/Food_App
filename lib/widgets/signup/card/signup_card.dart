@@ -50,5 +50,6 @@ class _SignupCardState extends State<SignupCard>{
     staffcodeController.dispose();
     accountnameController.dispose();
     passwordController.dispose();
+    super.dispose();
   }
 }
