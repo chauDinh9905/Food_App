@@ -1,17 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_model.dart';
+part of 'login_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
-  username: json['username'] as String?,
-  password: json['password'] as String?,
-);
+_LoginRequestModel _$LoginRequestModelFromJson(Map<String, dynamic> json) =>
+    _LoginRequestModel(
+      username: json['username'] as String,
+      password: json['password'] as String,
+    );
 
-Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
+Map<String, dynamic> _$LoginRequestModelToJson(_LoginRequestModel instance) =>
     <String, dynamic>{
       'username': instance.username,
       'password': instance.password,
