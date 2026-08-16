@@ -38,6 +38,12 @@ import 'package:projects_for_mobile/data/data_sources/user_remote_data_source.da
     as _i78;
 import 'package:projects_for_mobile/data/data_sources/user_remote_data_source_impl.dart'
     as _i1061;
+import 'package:projects_for_mobile/data/repositories_impl/food_repository_impl.dart'
+    as _i887;
+import 'package:projects_for_mobile/data/repositories_impl/order_repository_impl.dart'
+    as _i375;
+import 'package:projects_for_mobile/data/repositories_impl/user_repository_impl.dart'
+    as _i154;
 import 'package:projects_for_mobile/domain/repositories/food_repository.dart'
     as _i19;
 import 'package:projects_for_mobile/domain/repositories/order_repository.dart'
@@ -83,26 +89,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i821.OrderDataSource>(
       () => _i316.OrderDataSourceImpl(gh<_i361.Dio>()),
     );
-    gh.factory<_i280.GetFoodItemsOnThisWeekUseCase>(
-      () => _i280.GetFoodItemsOnThisWeekUseCase(gh<_i19.FoodRepository>()),
-    );
     gh.lazySingleton<_i949.FoodItemRemoteDataSource>(
       () => _i625.FoodItemRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
+    gh.factory<_i19.FoodRepository>(
+      () => _i887.FoodRepositoryImpl(gh<_i949.FoodItemRemoteDataSource>()),
     );
     gh.lazySingleton<_i78.UserRemoteDataSource>(
       () => _i1061.UserRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
-    gh.factory<_i561.LoginUserUseCase>(
-      () => _i561.LoginUserUseCase(gh<_i999.UserRepository>()),
-    );
-    gh.factory<_i1040.RegisterUseCase>(
-      () => _i1040.RegisterUseCase(gh<_i999.UserRepository>()),
-    );
-    gh.factory<_i274.ResetPasswordUseCase>(
-      () => _i274.ResetPasswordUseCase(gh<_i999.UserRepository>()),
-    );
-    gh.factory<_i489.VerifyForgotPasswordUseCase>(
-      () => _i489.VerifyForgotPasswordUseCase(gh<_i999.UserRepository>()),
+    gh.factory<_i886.OrderRepository>(
+      () => _i375.OrderRepositoryImpl(gh<_i821.OrderDataSource>()),
     );
     gh.factory<_i690.CancelOrderUseCase>(
       () => _i690.CancelOrderUseCase(gh<_i886.OrderRepository>()),
@@ -115,6 +112,24 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1042.GetAllOrdersByMonthYearUseCase>(
       () => _i1042.GetAllOrdersByMonthYearUseCase(gh<_i886.OrderRepository>()),
+    );
+    gh.factory<_i280.GetFoodItemsOnThisWeekUseCase>(
+      () => _i280.GetFoodItemsOnThisWeekUseCase(gh<_i19.FoodRepository>()),
+    );
+    gh.factory<_i999.UserRepository>(
+      () => _i154.UserRepositoryImpl(gh<_i78.UserRemoteDataSource>()),
+    );
+    gh.factory<_i561.LoginUserUseCase>(
+      () => _i561.LoginUserUseCase(gh<_i999.UserRepository>()),
+    );
+    gh.factory<_i1040.RegisterUseCase>(
+      () => _i1040.RegisterUseCase(gh<_i999.UserRepository>()),
+    );
+    gh.factory<_i274.ResetPasswordUseCase>(
+      () => _i274.ResetPasswordUseCase(gh<_i999.UserRepository>()),
+    );
+    gh.factory<_i489.VerifyForgotPasswordUseCase>(
+      () => _i489.VerifyForgotPasswordUseCase(gh<_i999.UserRepository>()),
     );
     return this;
   }

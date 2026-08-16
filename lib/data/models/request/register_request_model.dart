@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'register_request_model.freezed.dart';
 part 'register_request_model.g.dart';
-@freezed
+
 @freezed
 abstract class RegisterRequestModel with _$RegisterRequestModel {
   const factory RegisterRequestModel({

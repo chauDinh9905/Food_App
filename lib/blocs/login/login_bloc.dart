@@ -5,7 +5,8 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class LoginBloc extends Bloc<LoginEvent, LoginState>{
-  LoginBloc():super(LoginInitial()){
+  final LoginUserUseCase loginUserUseCase;
+  LoginBloc(this.loginUserUseCase):super(LoginInitial()){
     on<LoginSubmitted>(_onLoginSubmitted);
   }
 
