@@ -17,6 +17,7 @@ class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
     Key? key,
     required String username,
     required String fullname,
+    required String employeeCode,
     List<PageRouteInfo>? children,
   }) : super(
          ChangePasswordRoute.name,
@@ -24,6 +25,7 @@ class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
            key: key,
            username: username,
            fullname: fullname,
+           employeeCode: employeeCode,
          ),
          initialChildren: children,
        );
@@ -38,6 +40,7 @@ class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
         key: args.key,
         username: args.username,
         fullname: args.fullname,
+        employeeCode: args.employeeCode,
       );
     },
   );
@@ -48,6 +51,7 @@ class ChangePasswordRouteArgs {
     this.key,
     required this.username,
     required this.fullname,
+    required this.employeeCode,
   });
 
   final Key? key;
@@ -56,9 +60,11 @@ class ChangePasswordRouteArgs {
 
   final String fullname;
 
+  final String employeeCode;
+
   @override
   String toString() {
-    return 'ChangePasswordRouteArgs{key: $key, username: $username, fullname: $fullname}';
+    return 'ChangePasswordRouteArgs{key: $key, username: $username, fullname: $fullname, employeeCode: $employeeCode}';
   }
 
   @override
@@ -67,11 +73,16 @@ class ChangePasswordRouteArgs {
     if (other is! ChangePasswordRouteArgs) return false;
     return key == other.key &&
         username == other.username &&
-        fullname == other.fullname;
+        fullname == other.fullname &&
+        employeeCode == other.employeeCode;
   }
 
   @override
-  int get hashCode => key.hashCode ^ username.hashCode ^ fullname.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      username.hashCode ^
+      fullname.hashCode ^
+      employeeCode.hashCode;
 }
 
 /// generated route for

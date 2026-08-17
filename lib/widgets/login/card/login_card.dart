@@ -8,6 +8,8 @@ import 'package:projects_for_mobile/routes/app_route.dart';
 import '../../../blocs/login/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../blocs/login/login_state.dart';
+
 class LoginCard extends StatefulWidget{
   const LoginCard({super.key});
   @override
@@ -34,24 +36,53 @@ class _LoginCardState extends State<LoginCard>{
     print("Nút tạo tài khoản mới ở màn hình đăng nhập được bấm");
   }
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final widthCard = MediaQuery.of(context).size.width * 0.90;
-    final heightCard = MediaQuery.of(context).size.height *0.6;
+    final heightCard = MediaQuery.of(context).size.height * 0.6;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(35),
       ),
-      //color: Colors.white,
       width: widthCard,
       height: heightCard,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          loginHeader(),
-          informationLogin(usernameController, passwordController),
-          informationButton(onLogin: login, onForgotPass: forgotPass,onCreateAccount:  createAccount),
-        ],
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          String? usernameError;
+          String? passwordError;
+          String? authenticationError;
+
+          if (state is LoginValidationFailure) {
+            usernameError = state.usernameError;
+            passwordError = state.passwordError;
+          }
+
+          if (state is LoginAuthenticationFailure) {
+            authenticationError = state.message;
+          }
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              loginHeader(),
+
+              informationLogin(
+                usernameController,
+                passwordController,
+                usernameError,
+                passwordError,
+                authenticationError,
+              ),
+
+              informationButton(
+                onLogin: login,
+                onForgotPass: forgotPass,
+                onCreateAccount: createAccount,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

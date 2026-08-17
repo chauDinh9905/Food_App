@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 Widget backToLoginButton({required VoidCallback backToLogin}){
-  return SizedBox(
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16),
     width: double.infinity,
     child: ElevatedButton(
       onPressed: backToLogin,

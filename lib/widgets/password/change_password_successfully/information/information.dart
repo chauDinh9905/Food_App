@@ -6,7 +6,7 @@ Widget _logoCheck(){
        color: Colors.lightGreenAccent,
        shape: BoxShape.circle,
      ),
-     child: Icon(Icons.check, color: Colors.green,),
+     child: Icon(Icons.check, color: Colors.green, size: 50,),
    );
 }
 
@@ -15,15 +15,19 @@ Widget _label(){
 }
 
 Widget _note(){
-  return Text.rich(
-    TextSpan(
-      text: "Mật khẩu của bạn đã được cập nhật. Vui lòng đăng nhập lại bằng ",
-      children: [
-        TextSpan(
-          text: "mật khẩu mới",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ],
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Text.rich(
+      textAlign: TextAlign.center,
+      TextSpan(
+        text: "Mật khẩu của bạn đã được cập nhật. Vui lòng đăng nhập lại bằng ",
+        children: [
+          TextSpan(
+            text: "mật khẩu mới",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
     ),
   );
 }

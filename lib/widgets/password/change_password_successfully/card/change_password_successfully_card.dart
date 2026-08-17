@@ -5,23 +5,6 @@ import '../../../../blocs/password/change_password_successful/change_password_su
 import '../../../../blocs/password/change_password_successful/change_password_successful_event.dart';
 import '../information/information.dart';
 
-/*
-Widget ChangePasswordSuccessfullyCard({required VoidCallback backToLogin}){
-  return Container(
-    padding: EdgeInsets.all(8),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadiusGeometry.circular(10),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        information(),
-        backToLoginButton(backToLogin: backToLogin),
-      ],
-    ),
-  );
-}
-*/
 class ChangePasswordSuccessfullyCard extends StatefulWidget {
   const ChangePasswordSuccessfullyCard({super.key});
   @override
@@ -36,7 +19,7 @@ class _ChangePasswordSuccessfullyCardState extends State<ChangePasswordSuccessfu
   @override
   Widget build(BuildContext context) {
     final widthCard = MediaQuery.of(context).size.width*0.9;
-    final heightCard = MediaQuery.of(context).size.height*0.6;
+    final heightCard = MediaQuery.of(context).size.height*0.4;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

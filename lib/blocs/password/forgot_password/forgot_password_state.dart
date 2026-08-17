@@ -3,10 +3,12 @@ final class ForgotPasswordInitial extends ForgotPasswordState{}
 final class ForgotPasswordLoading extends ForgotPasswordState{}
 final class ForgotPasswordSuccess extends ForgotPasswordState {
   final String username;
+  final String employeeCode;
   final String fullname;
 
   ForgotPasswordSuccess({
     required this.username,
+    required this.employeeCode,
     required this.fullname,
   });
 }

@@ -5,6 +5,7 @@ import 'package:projects_for_mobile/widgets/signup/header/signup_header.dart';
 import 'package:projects_for_mobile/widgets/signup/input_information/information.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/signup/signup_bloc.dart';
+import '../../../blocs/signup/signup_state.dart';
 
 class SignupCard extends StatefulWidget{
    const SignupCard({super.key});
@@ -24,9 +25,10 @@ class _SignupCardState extends State<SignupCard>{
     print('Nút đăng ký ở màn hình đăng ký được bấm');
   }
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final widthCard = MediaQuery.of(context).size.width * 0.9;
-    final heightCard = MediaQuery.of(context).size.height*0.6;
+    final heightCard = MediaQuery.of(context).size.height * 0.6;
+
     return Container(
       width: widthCard,
       height: heightCard,
@@ -34,13 +36,40 @@ class _SignupCardState extends State<SignupCard>{
         color: Colors.white,
         borderRadius: BorderRadius.circular(35),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          signupHeader(),
-          informationSignup(fullnameController, staffcodeController, accountnameController, passwordController),
-          informationButton(signup),
-        ],
+      child: BlocBuilder<SignupBloc, SignupState>(
+        builder: (context, state) {
+          String? fullnameError;
+          String? staffcodeError;
+          String? accountnameError;
+          String? passwordError;
+
+          if (state is SignupValidationFailure) {
+            fullnameError = state.fullnameError;
+            staffcodeError = state.staffcodeError;
+            accountnameError = state.accountnameError;
+            passwordError = state.passwordError;
+          }
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              signupHeader(),
+
+              informationSignup(
+                fullnameController,
+                staffcodeController,
+                accountnameController,
+                passwordController,
+                fullnameError,
+                staffcodeError,
+                accountnameError,
+                passwordError,
+              ),
+
+              informationButton(signup),
+            ],
+          );
+        },
       ),
     );
   }

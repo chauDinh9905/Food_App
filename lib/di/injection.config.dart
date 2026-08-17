@@ -81,11 +81,9 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
-    gh.factory<_i4.ChangePasswordBloc>(() => _i4.ChangePasswordBloc());
     gh.factory<_i189.ChangePasswordSuccessfulBloc>(
       () => _i189.ChangePasswordSuccessfulBloc(),
     );
-    gh.factory<_i27.SignupBloc>(() => _i27.SignupBloc());
     gh.lazySingleton<_i114.AuthLocalDataSource>(
       () => _i453.AuthLocalDataSourceImpl(),
     );
@@ -163,8 +161,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.ForgotPasswordBloc>(
       () => _i691.ForgotPasswordBloc(gh<_i489.VerifyForgotPasswordUseCase>()),
     );
+    gh.factory<_i4.ChangePasswordBloc>(
+      () => _i4.ChangePasswordBloc(gh<_i274.ResetPasswordUseCase>()),
+    );
     gh.factory<_i834.LoginBloc>(
       () => _i834.LoginBloc(gh<_i561.LoginUserUseCase>()),
+    );
+    gh.factory<_i27.SignupBloc>(
+      () => _i27.SignupBloc(gh<_i1040.RegisterUseCase>()),
     );
     return this;
   }

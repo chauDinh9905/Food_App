@@ -36,6 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ChangePasswordRoute(
                 username: state.username,
                 fullname: state.fullname,
+                employeeCode: state.employeeCode,
               ),
             );
           }

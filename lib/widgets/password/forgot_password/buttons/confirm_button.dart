@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 Widget confirmButton({required VoidCallback confirm}){
-  return SizedBox(
+  return Container(
+    padding: const EdgeInsets.all(16),
     width: double.infinity,
     child: ElevatedButton(
         onPressed: confirm,

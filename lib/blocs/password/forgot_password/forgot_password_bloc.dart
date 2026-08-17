@@ -52,13 +52,14 @@ class ForgotPasswordBloc
       emit(
         ForgotPasswordSuccess(
           username: event.accountname,
+          employeeCode: event.staffcode,
           fullname: fullname,
         ),
       );
     } catch (e) {
       emit(
         ForgotPasswordAuthenticationFailure(
-          e.toString(),
+          "Thông tin xác minh không đúng",
         ),
       );
     }

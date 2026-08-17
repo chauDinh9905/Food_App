@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 Widget changePasswordButton({required VoidCallback changePassword}){
-  return SizedBox(
+  return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
       child: ElevatedButton(
           onPressed: changePassword,

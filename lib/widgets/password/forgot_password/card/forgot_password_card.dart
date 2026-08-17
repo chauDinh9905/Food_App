@@ -4,20 +4,8 @@ import 'package:projects_for_mobile/widgets/password/forgot_password/buttons/con
 import 'package:projects_for_mobile/widgets/password/forgot_password/input_information/input_information.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../blocs/password/forgot_password/forgot_password_bloc.dart';
+import '../../../../blocs/password/forgot_password/forgot_password_state.dart';
 import '../header/forgot_password_header.dart';
-/*
-Widget ForgotPasswordCard(TextEditingController usernameController, TextEditingController staffcodeController, {required VoidCallback confirm}){
-  return Container(
-    padding: EdgeInsetsGeometry.all(5),
-    child: Column(
-      children: [
-        forgotPasswordHeader(),
-        inputInformation(usernameController, staffcodeController),
-        confirmButton(confirm: confirm),
-      ],
-    ),
-  );
-}*/
 
 class ForgotPasswordCard extends StatefulWidget {
   const ForgotPasswordCard({super.key});
@@ -36,8 +24,9 @@ class _ForgotPasswordCardState extends State<ForgotPasswordCard>{
   }
   @override
   Widget build(BuildContext context) {
-    final widthCard = MediaQuery.of(context).size.width*0.9;
-    final heightCard = MediaQuery.of(context).size.height*0.6;
+    final widthCard = MediaQuery.of(context).size.width * 0.9;
+    final heightCard = MediaQuery.of(context).size.height * 0.4;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -45,13 +34,50 @@ class _ForgotPasswordCardState extends State<ForgotPasswordCard>{
       ),
       width: widthCard,
       height: heightCard,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          forgotPasswordHeader(),
-          inputInformation(usernameController, staffcodeController),
-          confirmButton(confirm: confirm),
-        ],
+      child: BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+        builder: (context, state) {
+          String? accountnameError;
+          String? staffcodeError;
+
+          if (state is ForgotPasswordValidationFailure) {
+            accountnameError = state.accountnameError;
+            staffcodeError = state.staffcodeError;
+          }
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              forgotPasswordHeader(),
+
+              inputInformation(
+                usernameController,
+                staffcodeController,
+                accountnameError: accountnameError,
+                staffcodeError: staffcodeError,
+              ),
+
+              if (state is ForgotPasswordAuthenticationFailure)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: Text(
+                    "Thông tin xác minh không đúng",
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+
+              confirmButton(
+                confirm: confirm,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

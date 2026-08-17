@@ -7,13 +7,11 @@ final class SignupValidationFailure extends SignupState{
   final String? staffcodeError;
   final String? accountnameError;
   final String? passwordError;
-  final String? duplicateError;
 
   SignupValidationFailure({
      this.fullnameError,
      this.staffcodeError,
      this.accountnameError,
      this.passwordError,
-     this.duplicateError,
   });
 }

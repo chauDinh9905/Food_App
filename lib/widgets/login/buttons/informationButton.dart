@@ -27,7 +27,7 @@ Widget informationButton({required VoidCallback onLogin, required VoidCallback o
   return Column(
     children: [
       _informationButtonColumn(Colors.blue, 'Login', onLogin),
-      _forgetPassButton(Colors.green, 'Quên mật khẩu', onForgotPass),
+      _forgetPassButton(Colors.blue, 'Quên mật khẩu', onForgotPass),
       _informationButtonColumn(Colors.green, 'Tạo tài khoản mới', onCreateAccount),
     ],
   );

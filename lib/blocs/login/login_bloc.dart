@@ -35,7 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
       } else {
         emit(
           LoginAuthenticationFailure(
-            result.message,
+            'Tên đăng nhập hoặc mật khẩu không đúng',
           ),
         );
       }

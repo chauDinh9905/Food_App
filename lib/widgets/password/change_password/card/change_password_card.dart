@@ -6,11 +6,13 @@ import 'package:projects_for_mobile/widgets/password/change_password/input_infor
 
 import '../../../../blocs/password/change_password/change_password_bloc.dart';
 import '../../../../blocs/password/change_password/change_password_event.dart';
+import '../../../../blocs/password/change_password/change_password_state.dart';
 
 class ChangePasswordCard extends StatefulWidget {
   final String username;
   final String fullname;
-  const ChangePasswordCard({super.key, required this.username, required this.fullname});
+  final String employeeCode;
+  const ChangePasswordCard({super.key, required this.username, required this.fullname, required this.employeeCode});
   @override
   State<ChangePasswordCard> createState() => _ChangePasswordCardState();
 }
@@ -20,14 +22,15 @@ class _ChangePasswordCardState extends State<ChangePasswordCard>{
   TextEditingController confirmPassController = TextEditingController();
   void changePassword(){
     context.read<ChangePasswordBloc>().add(
-      ChangePassword(newPassword: newPassController.text, confirmPassword:  confirmPassController.text)
+      ChangePassword(newPassword: newPassController.text, confirmPassword:  confirmPassController.text, username: widget.username, employeeCode: widget.employeeCode)
     );
     print("Nút đặt lại mật khẩu ở màn hình đổi mật khẩu được ấn");
   }
   @override
-  Widget build(BuildContext context){
-    final widthCard = MediaQuery.of(context).size.width*0.9;
-    final heightCard = MediaQuery.of(context).size.height*0.8;
+  Widget build(BuildContext context) {
+    final widthCard = MediaQuery.of(context).size.width * 0.9;
+    final heightCard = MediaQuery.of(context).size.height * 0.4;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -35,12 +38,39 @@ class _ChangePasswordCardState extends State<ChangePasswordCard>{
       ),
       width: widthCard,
       height: heightCard,
-      child: Column(
-         children: [
-           changePasswordHeader(widget.fullname, widget.username),
-           inputInformation(newPassController, confirmPassController),
-           changePasswordButton(changePassword: changePassword),
-         ],
+      child: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
+        builder: (context, state) {
+          String? newPassError;
+          String? confirmPassError;
+          String? matchError;
+
+          if (state is ChangePasswordValidationFailure) {
+            newPassError = state.newPassError;
+            confirmPassError = state.confirmPassError;
+            matchError = state.matchError;
+          }
+
+          return Column(
+            children: [
+              changePasswordHeader(
+                widget.fullname,
+                widget.username,
+              ),
+
+              inputInformation(
+                newPassController,
+                confirmPassController,
+                newPassError: newPassError,
+                confirmPassError: confirmPassError,
+                matchError: matchError,
+              ),
+
+              changePasswordButton(
+                changePassword: changePassword,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

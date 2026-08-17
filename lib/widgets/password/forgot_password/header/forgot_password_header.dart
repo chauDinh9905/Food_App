@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 Widget _bounder(){
   return Container(
-    height: 1,
-    width: double.infinity,
-    color: Colors.green,
+    padding: const EdgeInsets.symmetric(horizontal: 30),
+    child: Container(
+      height: 1,
+      width: double.infinity,
+      color: Colors.green,
+    ),
   );
 }
 
@@ -13,9 +16,8 @@ Widget forgotPasswordHeader(){
      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
      color: Colors.white,
      child: Column(
-       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
        children: [
-         Text("Quên mật khẩu", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold,),),
+         Text("Quên mật khẩu", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 24),),
          _bounder(),
        ],
      ),

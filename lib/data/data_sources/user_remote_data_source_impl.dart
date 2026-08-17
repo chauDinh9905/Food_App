@@ -60,7 +60,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       ApiEndpoints.verifyForgotPassword,
       data: request.toJson(),
     );
-
     return VerifyForgotPasswordResponseModel.fromJson(response.data);
   }
 

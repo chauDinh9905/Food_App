@@ -33,10 +33,23 @@ class UserRepositoryImpl implements UserRepository {
       fullname: fullname,
       employeeCode: employeeCode,
     );
+    try {
+      final response = await dataSource.register(request);
 
-    final response = await dataSource.register(request);
+      return response.toEntity();
+    } on DioException catch (e) {
+      final data = e.response?.data;
 
-    return response.toEntity();
+      if (data is Map<String, dynamic>) {
+        final message = data['message'];
+
+        if (message is String && message.isNotEmpty) {
+          throw Exception(message);
+        }
+      }
+
+      throw Exception('Không thể kết nối đến máy chủ');
+    }
   }
 
   @override
