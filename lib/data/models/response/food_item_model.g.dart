@@ -12,7 +12,7 @@ _FoodItemModel _$FoodItemModelFromJson(Map<String, dynamic> json) =>
       nameFood: json['name_food'] as String,
       description: json['description'] as String?,
       price: (json['price'] as num).toInt(),
-      image: json['image'] as String?,
+      imageUrl: json['image_url'] as String?,
       availableDate: json['available_date'] as String,
       isOrdered: (json['is_ordered'] as num).toInt(),
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$FoodItemModelToJson(_FoodItemModel instance) =>
       'name_food': instance.nameFood,
       'description': instance.description,
       'price': instance.price,
-      'image': instance.image,
+      'image_url': instance.imageUrl,
       'available_date': instance.availableDate,
       'is_ordered': instance.isOrdered,
     };

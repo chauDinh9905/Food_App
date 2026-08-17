@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import '../../domain/use_cases/login_user.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 import 'package:injectable/injectable.dart';
@@ -21,6 +22,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
       return;
     }
     emit(LoginLoading());
-    emit(LoginSuccess());
+    try {
+      //  Gọi UseCase
+      final result = await loginUserUseCase(
+        username: event.username,
+        password: event.password,
+      );
+
+      // Xử lý kết quả
+      if (result.status == 1) {
+        emit(LoginSuccess());
+      } else {
+        emit(
+          LoginAuthenticationFailure(
+            result.message,
+          ),
+        );
+      }
+    } catch (e) {
+      emit(
+        LoginAuthenticationFailure(
+          e.toString().replaceFirst('Exception: ', ''),
+        ),
+      );
+    }
   }
 }

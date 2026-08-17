@@ -18,8 +18,8 @@ abstract class FoodItemModel with _$FoodItemModel {
     @JsonKey(name: 'price')
     required int price,
 
-    @JsonKey(name: 'image')
-    String? image,
+    @JsonKey(name: 'image_url')
+    String? imageUrl,
 
     @JsonKey(name: 'available_date')
     required String availableDate,

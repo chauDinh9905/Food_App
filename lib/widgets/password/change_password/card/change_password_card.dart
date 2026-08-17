@@ -7,33 +7,15 @@ import 'package:projects_for_mobile/widgets/password/change_password/input_infor
 import '../../../../blocs/password/change_password/change_password_bloc.dart';
 import '../../../../blocs/password/change_password/change_password_event.dart';
 
-/*
-Widget ChangePasswordCard(String fullname, String accountname, TextEditingController newPasswordController, TextEditingController confirmPasswordController, {required VoidCallback changePassword}){
-  return Container(
-    padding: EdgeInsetsGeometry.all(5),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(15),
-    ),
-    child: Column(
-      children: [
-        changePasswordHeader(fullname, accountname),
-        inputInformation(newPasswordController, confirmPasswordController),
-        changePasswordButton(changePassword: changePassword),
-      ],
-    ),
-  );
-}*/
-
 class ChangePasswordCard extends StatefulWidget {
-  const ChangePasswordCard({super.key});
+  final String username;
+  final String fullname;
+  const ChangePasswordCard({super.key, required this.username, required this.fullname});
   @override
   State<ChangePasswordCard> createState() => _ChangePasswordCardState();
 }
 
 class _ChangePasswordCardState extends State<ChangePasswordCard>{
-  String? fullname;
-  String? accountname;
   TextEditingController newPassController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   void changePassword(){
@@ -55,7 +37,7 @@ class _ChangePasswordCardState extends State<ChangePasswordCard>{
       height: heightCard,
       child: Column(
          children: [
-           changePasswordHeader(fullname, accountname),
+           changePasswordHeader(widget.fullname, widget.username),
            inputInformation(newPassController, confirmPassController),
            changePasswordButton(changePassword: changePassword),
          ],

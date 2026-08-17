@@ -12,18 +12,66 @@ part of 'app_route.dart';
 
 /// generated route for
 /// [ChangePasswordScreen]
-class ChangePasswordRoute extends PageRouteInfo<void> {
-  const ChangePasswordRoute({List<PageRouteInfo>? children})
-    : super(ChangePasswordRoute.name, initialChildren: children);
+class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({
+    Key? key,
+    required String username,
+    required String fullname,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ChangePasswordRoute.name,
+         args: ChangePasswordRouteArgs(
+           key: key,
+           username: username,
+           fullname: fullname,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ChangePasswordRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ChangePasswordScreen();
+      final args = data.argsAs<ChangePasswordRouteArgs>();
+      return ChangePasswordScreen(
+        key: args.key,
+        username: args.username,
+        fullname: args.fullname,
+      );
     },
   );
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({
+    this.key,
+    required this.username,
+    required this.fullname,
+  });
+
+  final Key? key;
+
+  final String username;
+
+  final String fullname;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{key: $key, username: $username, fullname: $fullname}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ChangePasswordRouteArgs) return false;
+    return key == other.key &&
+        username == other.username &&
+        fullname == other.fullname;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ username.hashCode ^ fullname.hashCode;
 }
 
 /// generated route for
@@ -86,6 +134,22 @@ class HomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const HomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [ListChoiceScreen]
+class ListChoiceRoute extends PageRouteInfo<void> {
+  const ListChoiceRoute({List<PageRouteInfo>? children})
+    : super(ListChoiceRoute.name, initialChildren: children);
+
+  static const String name = 'ListChoiceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ListChoiceScreen();
     },
   );
 }

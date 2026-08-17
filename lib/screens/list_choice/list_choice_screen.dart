@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/widgets/list_choice/buttons/informationButton.dart';
 import 'package:projects_for_mobile/routes/app_route.dart';
+
+@RoutePage()
 class ListChoiceScreen extends StatefulWidget {
   const ListChoiceScreen({super.key});
   @override

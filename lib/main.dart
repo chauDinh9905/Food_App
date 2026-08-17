@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/routes/app_route.dart';
 import 'package:projects_for_mobile/di/injection.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // void main() {
 //   runApp(const MyApp());
 // }
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await configureDependencies();
   runApp(const MyApp());
 }

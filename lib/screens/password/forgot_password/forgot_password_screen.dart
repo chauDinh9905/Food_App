@@ -32,7 +32,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       child: BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
         listener: (context, state){
           if(state is ForgotPasswordSuccess){
-            context.router.push(ChangePasswordRoute());
+            context.router.push(
+              ChangePasswordRoute(
+                username: state.username,
+                fullname: state.fullname,
+              ),
+            );
           }
         },
         child: Scaffold(

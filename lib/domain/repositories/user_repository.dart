@@ -3,6 +3,7 @@
 import 'package:projects_for_mobile/domain/entities/signup/register_result.dart';
 
 import '../entities/login/login_result.dart';
+import '../entities/user.dart';
 
 abstract class UserRepository {
   Future<RegisterResult> register({
@@ -27,4 +28,5 @@ abstract class UserRepository {
     required String employeeCode,
     required String newPassword,
   });
+  Future<User> getUserInfo();
 }

@@ -23,7 +23,7 @@ class FoodItemRemoteDataSourceImpl
           'name': name.trim(),
       },
     );
-
+    print('Food API response: ${response.data}');
     return GetFoodItemsResponseModel.fromJson(
       response.data,
     );

@@ -8,7 +8,7 @@ extension FoodItemModelMapper on FoodItemModel {
       name: nameFood,
       description: description,
       price: price,
-      imageUrl: image,
+      imageUrl: imageUrl,
       availableDate: DateTime.parse(availableDate),
       isOrdered: isOrdered == 1,
     );

@@ -14,7 +14,9 @@ import '../../../widgets/password/common/back_button.dart';
 
 @RoutePage()
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+  final String username;
+  final String fullname;
+  const ChangePasswordScreen({super.key, required this.username, required this.fullname});
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
@@ -58,7 +60,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen>{
                  ),
                ),
                Center(
-                 child: ChangePasswordCard(),
+                 child: ChangePasswordCard(username: widget.username, fullname: widget.fullname),
                ),
              ],
            ),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PaginatedOrders {
 
- List<Order> get orders; Pagination get pagination;
+ List<OrderDetail> get orders; Pagination get pagination;
 /// Create a copy of PaginatedOrders
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $PaginatedOrdersCopyWith<$Res>  {
   factory $PaginatedOrdersCopyWith(PaginatedOrders value, $Res Function(PaginatedOrders) _then) = _$PaginatedOrdersCopyWithImpl;
 @useResult
 $Res call({
- List<Order> orders, Pagination pagination
+ List<OrderDetail> orders, Pagination pagination
 });
 
 
@@ -66,7 +66,7 @@ class _$PaginatedOrdersCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? orders = null,Object? pagination = null,}) {
   return _then(PaginatedOrders(
 orders: null == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
-as List<Order>,pagination: null == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
+as List<OrderDetail>,pagination: null == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
 as Pagination,
   ));
 }
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Order> orders,  Pagination pagination)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<OrderDetail> orders,  Pagination pagination)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PaginatedOrders() when $default != null:
 return $default(_that.orders,_that.pagination);case _:
@@ -182,7 +182,7 @@ return $default(_that.orders,_that.pagination);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Order> orders,  Pagination pagination)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<OrderDetail> orders,  Pagination pagination)  $default,) {final _that = this;
 switch (_that) {
 case _PaginatedOrders():
 return $default(_that.orders,_that.pagination);case _:
@@ -202,7 +202,7 @@ return $default(_that.orders,_that.pagination);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Order> orders,  Pagination pagination)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<OrderDetail> orders,  Pagination pagination)?  $default,) {final _that = this;
 switch (_that) {
 case _PaginatedOrders() when $default != null:
 return $default(_that.orders,_that.pagination);case _:
@@ -217,11 +217,11 @@ return $default(_that.orders,_that.pagination);case _:
 
 
 class _PaginatedOrders implements PaginatedOrders {
-  const _PaginatedOrders({required  List<Order> orders, required this.pagination}): _orders = orders;
+  const _PaginatedOrders({required  List<OrderDetail> orders, required this.pagination}): _orders = orders;
   
 
- final  List<Order> _orders;
-@override List<Order> get orders {
+ final  List<OrderDetail> _orders;
+@override List<OrderDetail> get orders {
   if (_orders is EqualUnmodifiableListView) return _orders;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_orders);
@@ -259,7 +259,7 @@ abstract mixin class _$PaginatedOrdersCopyWith<$Res> implements $PaginatedOrders
   factory _$PaginatedOrdersCopyWith(_PaginatedOrders value, $Res Function(_PaginatedOrders) _then) = __$PaginatedOrdersCopyWithImpl;
 @override @useResult
 $Res call({
- List<Order> orders, Pagination pagination
+ List<OrderDetail> orders, Pagination pagination
 });
 
 
@@ -279,7 +279,7 @@ class __$PaginatedOrdersCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? orders = null,Object? pagination = null,}) {
   return _then(_PaginatedOrders(
 orders: null == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
-as List<Order>,pagination: null == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
+as List<OrderDetail>,pagination: null == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
 as Pagination,
   ));
 }

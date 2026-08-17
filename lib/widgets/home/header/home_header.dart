@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/constants/images/app_assets.dart';
 
-Widget _userName(String name){
+Widget _userName(String? name){
   String label = "Xin chào, $name";
   return Text(label);
 }
@@ -32,7 +32,7 @@ Widget _notice(){
   return Text("Lưu ý: đặt cơm chậm nhất trước 10:00 AM", style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),);
 }
 
-Widget homeHeader(String name){
+Widget homeHeader(String? name){
   return Container(
      child: Column(
        mainAxisAlignment: MainAxisAlignment.spaceEvenly,

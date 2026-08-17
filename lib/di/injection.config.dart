@@ -30,6 +30,10 @@ import 'package:projects_for_mobile/data/data_sources/food_item_remote_data_sour
     as _i949;
 import 'package:projects_for_mobile/data/data_sources/food_item_remote_data_source_impl.dart'
     as _i625;
+import 'package:projects_for_mobile/data/data_sources/local/auth_local_data_source.dart'
+    as _i114;
+import 'package:projects_for_mobile/data/data_sources/local/auth_local_data_source_impl.dart'
+    as _i453;
 import 'package:projects_for_mobile/data/data_sources/order_data_source.dart'
     as _i821;
 import 'package:projects_for_mobile/data/data_sources/order_data_source_impl.dart'
@@ -59,6 +63,8 @@ import 'package:projects_for_mobile/domain/use_cases/get_all_orders_by_month_yea
     as _i1042;
 import 'package:projects_for_mobile/domain/use_cases/get_food_items_on_this_week_use_case.dart'
     as _i280;
+import 'package:projects_for_mobile/domain/use_cases/get_user_info_use_case.dart'
+    as _i958;
 import 'package:projects_for_mobile/domain/use_cases/login_user.dart' as _i561;
 import 'package:projects_for_mobile/domain/use_cases/register_user.dart'
     as _i1040;
@@ -75,17 +81,17 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
-    gh.factory<_i346.HomeBloc>(() => _i346.HomeBloc());
-    gh.factory<_i306.LichSuBloc>(() => _i306.LichSuBloc());
-    gh.factory<_i834.LoginBloc>(() => _i834.LoginBloc());
     gh.factory<_i4.ChangePasswordBloc>(() => _i4.ChangePasswordBloc());
     gh.factory<_i189.ChangePasswordSuccessfulBloc>(
       () => _i189.ChangePasswordSuccessfulBloc(),
     );
-    gh.factory<_i691.ForgotPasswordBloc>(() => _i691.ForgotPasswordBloc());
     gh.factory<_i27.SignupBloc>(() => _i27.SignupBloc());
-    gh.factory<_i148.ThongKeBloc>(() => _i148.ThongKeBloc());
-    gh.lazySingleton<_i361.Dio>(() => networkModule.dio);
+    gh.lazySingleton<_i114.AuthLocalDataSource>(
+      () => _i453.AuthLocalDataSourceImpl(),
+    );
+    gh.lazySingleton<_i361.Dio>(
+      () => networkModule.dio(gh<_i114.AuthLocalDataSource>()),
+    );
     gh.lazySingleton<_i821.OrderDataSource>(
       () => _i316.OrderDataSourceImpl(gh<_i361.Dio>()),
     );
@@ -101,6 +107,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i886.OrderRepository>(
       () => _i375.OrderRepositoryImpl(gh<_i821.OrderDataSource>()),
     );
+    gh.factory<_i999.UserRepository>(
+      () => _i154.UserRepositoryImpl(
+        gh<_i78.UserRemoteDataSource>(),
+        gh<_i114.AuthLocalDataSource>(),
+      ),
+    );
     gh.factory<_i690.CancelOrderUseCase>(
       () => _i690.CancelOrderUseCase(gh<_i886.OrderRepository>()),
     );
@@ -113,11 +125,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1042.GetAllOrdersByMonthYearUseCase>(
       () => _i1042.GetAllOrdersByMonthYearUseCase(gh<_i886.OrderRepository>()),
     );
+    gh.factory<_i306.LichSuBloc>(
+      () => _i306.LichSuBloc(gh<_i133.GetAllOrdersUseCase>()),
+    );
     gh.factory<_i280.GetFoodItemsOnThisWeekUseCase>(
       () => _i280.GetFoodItemsOnThisWeekUseCase(gh<_i19.FoodRepository>()),
     );
-    gh.factory<_i999.UserRepository>(
-      () => _i154.UserRepositoryImpl(gh<_i78.UserRemoteDataSource>()),
+    gh.factory<_i148.ThongKeBloc>(
+      () => _i148.ThongKeBloc(
+        gh<_i133.GetAllOrdersUseCase>(),
+        gh<_i1042.GetAllOrdersByMonthYearUseCase>(),
+      ),
+    );
+    gh.factory<_i958.GetUserInfoUseCase>(
+      () => _i958.GetUserInfoUseCase(gh<_i999.UserRepository>()),
     );
     gh.factory<_i561.LoginUserUseCase>(
       () => _i561.LoginUserUseCase(gh<_i999.UserRepository>()),
@@ -130,6 +151,20 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i489.VerifyForgotPasswordUseCase>(
       () => _i489.VerifyForgotPasswordUseCase(gh<_i999.UserRepository>()),
+    );
+    gh.factory<_i346.HomeBloc>(
+      () => _i346.HomeBloc(
+        gh<_i280.GetFoodItemsOnThisWeekUseCase>(),
+        gh<_i20.CreateOrderUseCase>(),
+        gh<_i690.CancelOrderUseCase>(),
+        gh<_i958.GetUserInfoUseCase>(),
+      ),
+    );
+    gh.factory<_i691.ForgotPasswordBloc>(
+      () => _i691.ForgotPasswordBloc(gh<_i489.VerifyForgotPasswordUseCase>()),
+    );
+    gh.factory<_i834.LoginBloc>(
+      () => _i834.LoginBloc(gh<_i561.LoginUserUseCase>()),
     );
     return this;
   }

@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/entities/login/login_result.dart';
 import '../../domain/entities/signup/register_result.dart';
+import '../../domain/entities/user.dart';
 import '../../domain/repositories/user_repository.dart';
 import '../data_mapper/user/login_response_mapper.dart';
 import '../data_mapper/user/register_response_mapper.dart';
+import '../data_mapper/user/user_mapper.dart';
+import '../data_sources/local/auth_local_data_source.dart';
 import '../data_sources/user_remote_data_source.dart';
 import '../models/request/login_request_model.dart';
 import '../models/request/register_request_model.dart';
@@ -13,8 +17,8 @@ import '../models/request/verify_forgot_password_request_model.dart';
 @Injectable(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteDataSource dataSource;
-
-  UserRepositoryImpl(this.dataSource);
+  final AuthLocalDataSource authLocalDataSource;
+  UserRepositoryImpl(this.dataSource, this.authLocalDataSource,);
 
   @override
   Future<RegisterResult> register({
@@ -45,9 +49,28 @@ class UserRepositoryImpl implements UserRepository {
       password: password,
     );
 
-    final response = await dataSource.login(request);
+    try {
+      final response = await dataSource.login(request);
+      final result = response.toEntity();
 
-    return response.toEntity();
+      if (result.status == 1) {
+        await authLocalDataSource.saveToken(result.token);
+      }
+
+      return result;
+    } on DioException catch (e) {
+      final data = e.response?.data;
+
+      if (data is Map<String, dynamic>) {
+        final message = data['message'];
+
+        if (message is String && message.isNotEmpty) {
+          throw Exception(message);
+        }
+      }
+
+      throw Exception('Không thể kết nối đến máy chủ');
+    }
   }
 
   @override
@@ -78,5 +101,12 @@ class UserRepositoryImpl implements UserRepository {
     );
 
     await dataSource.resetForgotPassword(request);
+  }
+
+  @override
+  Future<User> getUserInfo() async {
+    final response = await dataSource.getUserInfo();
+
+    return response.data.toEntity();
   }
 }

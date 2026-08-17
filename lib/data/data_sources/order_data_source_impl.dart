@@ -49,6 +49,7 @@ class OrderDataSourceImpl implements OrderDataSource {
     int page = 1,
     int limit = 10,
   }) async {
+    print('========== GET ALL ORDERS ==========');
     final response = await _dio.get(
       ApiEndpoints.getAllOrdersByUserId,
       queryParameters: {
@@ -56,7 +57,7 @@ class OrderDataSourceImpl implements OrderDataSource {
         'limit': limit,
       },
     );
-
+    print('GET ALL ORDERS response: ${response.data}');
     return GetOrdersResponseModel.fromJson(
       response.data,
     );
@@ -66,11 +67,14 @@ class OrderDataSourceImpl implements OrderDataSource {
   Future<GetOrdersByMonthYearResponseModel> getOrdersByMonthYear({
     required GetOrdersByMonthYearRequestModel request,
   }) async {
+    print('========== GET ORDERS BY MONTH YEAR ==========');
     final response = await _dio.post(
       ApiEndpoints.getAllOrderByUserIdForMonthYear,
       data: request.toJson(),
     );
-
+    print(
+      'GET ORDERS BY MONTH YEAR response: ${response.data}',
+    );
     return GetOrdersByMonthYearResponseModel.fromJson(
       response.data,
     );

@@ -13,14 +13,18 @@ Widget _foodPrice(String label){
   );
 }
 
-Widget _date(DateTime dt){
-  String date =
-      "${dt.day.toString().padLeft(2, '0')}/"
-      "${dt.month.toString().padLeft(2, '0')}/"
-      "${dt.year}";
-  String label = "Ngày: $date";
+Widget _date(DateTime dt) {
+  final localDate = dt.toLocal();
+
+  final date =
+      "${localDate.day.toString().padLeft(2, '0')}/"
+      "${localDate.month.toString().padLeft(2, '0')}/"
+      "${localDate.year}";
+
+  final label = "Ngày: $date";
+
   return Container(
-     child: Text(label),
+    child: Text(label),
   );
 }
 
