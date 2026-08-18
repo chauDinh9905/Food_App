@@ -72,6 +72,8 @@ import 'package:projects_for_mobile/domain/use_cases/reset_password.dart'
     as _i274;
 import 'package:projects_for_mobile/domain/use_cases/verify_forgot_password.dart'
     as _i489;
+import 'package:projects_for_mobile/services/notification/local_notification_service.dart'
+    as _i702;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -83,6 +85,9 @@ extension GetItInjectableX on _i174.GetIt {
     final networkModule = _$NetworkModule();
     gh.factory<_i189.ChangePasswordSuccessfulBloc>(
       () => _i189.ChangePasswordSuccessfulBloc(),
+    );
+    gh.singleton<_i702.LocalNotificationService>(
+      () => _i702.LocalNotificationService(),
     );
     gh.lazySingleton<_i114.AuthLocalDataSource>(
       () => _i453.AuthLocalDataSourceImpl(),
@@ -150,14 +155,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i489.VerifyForgotPasswordUseCase>(
       () => _i489.VerifyForgotPasswordUseCase(gh<_i999.UserRepository>()),
     );
-    gh.factory<_i346.HomeBloc>(
-      () => _i346.HomeBloc(
-        gh<_i280.GetFoodItemsOnThisWeekUseCase>(),
-        gh<_i20.CreateOrderUseCase>(),
-        gh<_i690.CancelOrderUseCase>(),
-        gh<_i958.GetUserInfoUseCase>(),
-      ),
-    );
     gh.factory<_i691.ForgotPasswordBloc>(
       () => _i691.ForgotPasswordBloc(gh<_i489.VerifyForgotPasswordUseCase>()),
     );
@@ -169,6 +166,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i27.SignupBloc>(
       () => _i27.SignupBloc(gh<_i1040.RegisterUseCase>()),
+    );
+    gh.factory<_i346.HomeBloc>(
+      () => _i346.HomeBloc(
+        gh<_i280.GetFoodItemsOnThisWeekUseCase>(),
+        gh<_i20.CreateOrderUseCase>(),
+        gh<_i690.CancelOrderUseCase>(),
+        gh<_i958.GetUserInfoUseCase>(),
+        gh<_i702.LocalNotificationService>(),
+      ),
     );
     return this;
   }

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:projects_for_mobile/routes/app_route.dart';
 import 'package:projects_for_mobile/di/injection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-// void main() {
-//   runApp(const MyApp());
-// }
+import 'package:projects_for_mobile/services/notification/local_notification_service.dart';
+
+final appRouter = AppRouter();
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await configureDependencies();
+  final notificationService = getIt<LocalNotificationService>();
+
+  await notificationService.initialize();
+  await notificationService.requestPermission();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -18,8 +22,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const String appTitle = 'Flutter layout demo';
-
-    final appRouter = AppRouter();
     return MaterialApp.router(
       routerConfig: appRouter.config(),
     );
